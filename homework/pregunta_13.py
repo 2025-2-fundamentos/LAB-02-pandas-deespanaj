@@ -20,3 +20,13 @@ def pregunta_13():
     E    275
     Name: c5b, dtype: int64
     """
+
+    import pandas as pd
+
+    tbl0 = pd.read_csv("files/input/tbl0.tsv", sep="\t")
+    tbl2 = pd.read_csv("files/input/tbl2.tsv", sep="\t")
+
+    merged_df = pd.merge(tbl0[['c0', 'c1']], tbl2[['c0', 'c5b']], on='c0')
+    suma_c5b_por_c1 = merged_df.groupby('c1')['c5b'].sum()
+
+    return suma_c5b_por_c1
